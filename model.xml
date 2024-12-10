@@ -1,0 +1,24 @@
+<!-- Needs to be placed in the correct folder, where gym is installed: "..\Lib\site-packages\gym\envs\mujoco\assets" -->
+
+<mujoco model="model">
+  <default>
+    <motor ctrllimited="true" ctrlrange="-45 45"/>
+  </default>
+  <option gravity="0 0 -9.81" integrator="RK4" timestep="0.005"/> 
+  <worldbody>
+    <light diffuse=".4 .4 .4" pos="0 0 3" dir="0 0 -1"/>
+    <body name="agent" pos="0 0 0">
+      <joint type="hinge" axis="1 0 0" name="x_agent" limited="true" range="-10 10"/> 
+      <joint type="hinge" axis="0 1 0" name="y_agent" limited="true" range="-10 10"/>
+      <geom type="box" size=".5 .5 .5" rgba="0 .9 0 1"/>
+    </body>
+    <body name="ball" pos="0 0 0.7">
+      <joint type="free"/>
+      <geom type="sphere" size=".1" rgba="0 .9 0 1"/>
+    </body>
+  </worldbody>
+  <actuator>
+    <motor ctrllimited="true" ctrlrange="-45 45" gear="750.0" joint="x_agent" name="x_agnt"/>
+    <motor ctrllimited="true" ctrlrange="-45 45" gear="750.0" joint="y_agent" name="y_agnt"/>
+  </actuator>
+</mujoco>
